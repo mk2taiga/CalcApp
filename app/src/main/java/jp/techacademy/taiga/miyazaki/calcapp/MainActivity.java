@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button button2;
     Button button3;
     Button button4;
+    double sum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,22 +44,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(this, ResultActivity.class);
         //EditTextの中身を取得する, int型に変換する
         String str1 = editText1.getText().toString();
-        int i1 = Integer.parseInt(str1);
+        double num1 = Double.parseDouble(str1);
         String str2 = editText2.getText().toString();
-        int i2 = Integer.parseInt(str2);
+        double num2 = Double.parseDouble(str2);
         //ボタンの条件分岐
         if (v.getId() == R.id.button1) {
-            int sum = i1 + i2;
+             sum = num1 + num2;
             intent.putExtra("VALUE", sum);
         }else if (v.getId() == R.id.button2) {
-            int sum = i1 - i2;
+            sum = num1 - num2;
             intent.putExtra("VALUE", sum);
         }else if (v.getId() == R.id.button3) {
-            int sum = i1 * i2;
+            sum = num1 * num2;
             intent.putExtra("VALUE", sum);
         }else if (v.getId() == R.id.button4) {
-            int sum = i1 / i2;
-            intent.putExtra("VALUE", sum);
+            if (num1 != 0 && num2 != 0) {
+                sum = num1 / num2;
+                intent.putExtra("VALUE", sum);
+            }
         }
 
         startActivity(intent);
